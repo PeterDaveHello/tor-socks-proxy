@@ -31,6 +31,18 @@ The super easy way to setup a tor SOCKS5 proxy server without relay/exit feature
 
 3. Configure your client to use it, target on `127.0.0.1` port `9150`
 
+    Take `curl` as an example, checkout what's your ip address via tor nextwork:
+    ```sh
+    $ curl --socks5-hostname 127.0.0.1:9150 ipinfo.io/ip
+    $ curl --socks5-hostname 127.0.0.1:9150 icanhazip.com
+    $ curl --socks5-hostname 127.0.0.1:9150 ipecho.net/plain
+    ```
+
+    Take `ssh` and `nc` as an example, connect to a host via tor:
+    ```sh
+    $ ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
+    ```
+
 4. After using it, you can turn it off
     ```sh
     $ docker stop tor_socks_proxy
