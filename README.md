@@ -52,5 +52,15 @@ The super easy way to setup a tor SOCKS5 proxy server without relay/exit feature
     ```sh
     $ docker stop tor_socks_proxy
     ```
+    
+## How to renew IP?
+
+ - To To renew the IP that Tor gives you, simply restart your docker container:
+   ```sh
+   $ docker restart tor_socks_proxy                                                                                                                  
+   ```
+
+   Just note that all the connections will be terminated and need to be reconnected.
+
 
 For the project sustainability I strongly encourge you to help setup Tor bridge/exit and donate money to the Tor project (Not this proxy project) when you have the ability/capacity!
