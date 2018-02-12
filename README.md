@@ -3,6 +3,7 @@ tor-socks-proxy
 
 ![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat) [![](https://img.shields.io/docker/pulls/peterdavehello/tor-socks-proxy.svg)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
  [![](https://images.microbadger.com/badges/image/peterdavehello/tor-socks-proxy.svg)](https://microbadger.com/images/peterdavehello/tor-socks-proxy/) [![](https://images.microbadger.com/badges/version/peterdavehello/tor-socks-proxy.svg)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/tags/)
+
 The super easy way to setup a tor SOCKS5 proxy server without relay/exit feature.
 
 ## How to use?
