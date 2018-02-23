@@ -13,7 +13,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     ```
 
     - Use `127.0.0.1` to limit the connections from localhost, do not change it unless you know you're going to expose it to a local network or to the Internet.
-    - Change to first `9150` to any valia and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
+    - Change to first `9150` to any valid and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
     - Do not touch the second `9150` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
 
     If you already setup the instance before *(not the first time)*, just start it:
@@ -35,7 +35,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
 3. Configure your client to use it, target on `127.0.0.1` port `9150`(Or the other port you setup in step 1)
 
-    Take `curl` as an example, checkout what's your ip address via Tor nextwork:
+    Take `curl` as an example, checkout what's your IP address via Tor network:
     ```sh
     $ curl --socks5-hostname 127.0.0.1:9150 ipinfo.io/ip
     $ curl --socks5-hostname 127.0.0.1:9150 icanhazip.com
@@ -64,4 +64,4 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
 ## Note
 
-**For the project sustainability I strongly encourge you to help setup Tor bridge/exit and donate money to the Tor project (Not this proxy project) when you have the ability/capacity!**
+**For the project sustainability I strongly encourage you to help setup Tor bridge/exit and donate money to the Tor project (Not this proxy project) when you have the ability/capacity!**
