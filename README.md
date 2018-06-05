@@ -57,6 +57,12 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     $ docker stop tor_socks_proxy
     ```
 
+5. The Process in the Container is not running as root:
+    Instead it is run as user `tor` with userid `100`.
+    If you require the user to be a specifc one (e.g. one which is available on the host), then use the environment variable `USERID` (e.g. by passing `-e USERID=1000` to docker run).
+    On most OS the UID 1000 is the first non-system user. This is particularly useful, if you want to access tor's data directory by accessing the volume /tor (e.g. `-v $(pwd)/data:/tor`),
+    because then you can access the files with your regular file manager without issues. Type `id -u` to check out the current users uid.
+
 ## How to renew IP?
 
  - To renew the IP that Tor gives you, simply restart your docker container:

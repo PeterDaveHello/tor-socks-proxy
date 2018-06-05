@@ -1,2 +1,4 @@
 Log notice stdout
 SocksPort 0.0.0.0:9150
+DataDirectory /tor
+User tor
