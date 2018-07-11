@@ -14,4 +14,4 @@ HEALTHCHECK --timeout=10s --start-period=60s \
 
 EXPOSE 9150
 
-CMD /usr/bin/tor -f /etc/tor/torrc
+CMD ["/usr/bin/tor", "-f", "/etc/tor/torrc"]
