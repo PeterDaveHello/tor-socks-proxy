@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-MAINTAINER Peter Dave Hello <hsu@peterdavehello.org>
+LABEL maintainer="Peter Dave Hello <hsu@peterdavehello.org>"
 
 RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
     apk -U upgrade && \
