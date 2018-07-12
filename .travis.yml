@@ -12,6 +12,7 @@ cache:
 
 before_script:
   - npm install dockerfile_lint
+  - npm ls dockerfile_lint
 
 script:
   - npx dockerfile_lint
