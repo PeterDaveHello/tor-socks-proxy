@@ -8,11 +8,7 @@ git:
 
 cache:
   directories:
-    - node_modules
-
-before_script:
-  - npm install dockerfile_lint
-  - npm ls dockerfile_lint
+    - .npx
 
 script:
-  - npx dockerfile_lint
+  - npx --cache .npx dockerfile_lint
