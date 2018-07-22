@@ -2,8 +2,7 @@
   <img width="300px" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tor_project_logo_hq.png">
 </p>
 
-Tor-socks-proxy
-=======
+# Tor-socks-proxy
 
 ![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat)
 [![Build Status](https://travis-ci.com/PeterDaveHello/tor-socks-proxy.svg?branch=master)](https://travis-ci.com/PeterDaveHello/tor-socks-proxy)
@@ -15,7 +14,7 @@ Tor-socks-proxy
 
 The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https://en.wikipedia.org/wiki/SOCKS#SOCKS5) [proxy server](https://en.wikipedia.org/wiki/Proxy_server) inside a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) [container](https://en.wikipedia.org/wiki/Container_(virtualization)) without relay/exit feature.
 
-## How to use?
+## Usage
 
 1. Setup the proxy server at the **first time**
 
@@ -35,7 +34,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
 2. Make sure it's running, it'll take a short time to bootstrap
 
-    ```
+    ```sh
     $ docker logs tor_socks_proxy
     .
     .
@@ -69,7 +68,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     $ docker stop tor_socks_proxy
     ```
 
-## How to renew IP?
+## IP renewal
 
 - To renew the IP that Tor gives you, simply restart your docker container:
 
