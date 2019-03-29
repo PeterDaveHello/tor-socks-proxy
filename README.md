@@ -70,13 +70,15 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
 ## IP renewal
 
-- To renew the IP that Tor gives you, simply restart your docker container:
+- Tor changes circuit automatically every 10 minutes by default, which usually bring you the new IP address, it's affected by `MaxCircuitDirtiness` config, you can override it with your own `torrc`. See the official [manual](https://www.torproject.org/docs/tor-manual.html.en) for more details.
+
+- To manually renew the IP that Tor gives you, simply restart your docker container to open a new circuit:
 
    ```sh
    $ docker restart tor_socks_proxy
    ```
 
-   Just note that all the connections will be terminated and need to be reconnected.
+   Just note that all the connections will be terminated and need to be reestablished.
 
 ## Note
 
