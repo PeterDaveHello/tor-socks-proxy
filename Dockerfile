@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10.0
 
 LABEL maintainer="Peter Dave Hello <hsu@peterdavehello.org>"
 LABEL name="tor-socks-proxy"
