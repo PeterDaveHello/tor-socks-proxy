@@ -15,3 +15,10 @@ matrix:
           - .npx
       script:
         - npx --cache .npx dockerfile_lint
+    - env:
+        - task=Docker build
+      language: minimal
+      services:
+        - docker
+      script:
+        - docker build -t tor-socks-proxy:$TRAVIS_COMMIT .
