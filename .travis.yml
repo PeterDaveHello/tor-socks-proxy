@@ -1,16 +1,17 @@
 dist: xenial
 
-language: node_js
-
-node_js:
-  - "8"
-
 git:
   depth: 5
 
-cache:
-  directories:
-    - .npx
-
-script:
-  - npx --cache .npx dockerfile_lint
+matrix:
+  include:
+    - env:
+        - task=shellcheck
+      language: node_js
+      node_js:
+        - "8"
+      cache:
+        directories:
+          - .npx
+      script:
+        - npx --cache .npx dockerfile_lint
