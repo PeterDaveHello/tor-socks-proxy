@@ -8,8 +8,8 @@ RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk
     apk -U upgrade && \
     apk -v add tor@edge curl && \
     chmod 700 /var/lib/tor && \
-    rm -rf /var/cache/apk/*
-RUN tor --version
+    rm -rf /var/cache/apk/* && \
+    tor --version
 COPY torrc /etc/tor/
 
 HEALTHCHECK --timeout=10s --start-period=60s \
