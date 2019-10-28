@@ -50,10 +50,9 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     Take `curl` as an example, checkout what's your IP address via Tor network:
 
     ```sh
-    $ curl --socks5-hostname 127.0.0.1:9150 ipinfo.io/ip
-    $ curl --socks5-hostname 127.0.0.1:9150 icanhazip.com
-    $ curl --socks5-hostname 127.0.0.1:9150 ipecho.net/plain
-    $ curl --socks5-hostname 127.0.0.1:9150 whatismyip.akamai.com
+    $ curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.io/ip
+    $ curl --socks5-hostname 127.0.0.1:9150 https://icanhazip.com
+    $ curl --socks5-hostname 127.0.0.1:9150 https://ipecho.net/plain
     ```
 
     Take `ssh` and `nc` as an example, connect to a host via Tor:
