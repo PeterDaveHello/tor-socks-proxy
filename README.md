@@ -19,7 +19,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 1. Setup the proxy server at the **first time**
 
     ```sh
-    $ docker run -d --name tor_socks_proxy -p 127.0.0.1:9150:9150 peterdavehello/tor-socks-proxy:latest
+    $ docker run -d --name tor-socks-proxy -p 127.0.0.1:9150:9150 peterdavehello/tor-socks-proxy:latest
     ```
 
     - Use `127.0.0.1` to limit the connections from localhost, do not change it unless you know you're going to expose it to a local network or to the Internet.
@@ -29,13 +29,13 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     If you already setup the instance before *(not the first time)*, just start it:
 
     ```sh
-    $ docker start tor_socks_proxy
+    $ docker start tor-socks-proxy
     ```
 
 2. Make sure it's running, it'll take a short time to bootstrap
 
     ```sh
-    $ docker logs tor_socks_proxy
+    $ docker logs tor-socks-proxy
     .
     .
     .
@@ -65,7 +65,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 4. After using it, you can turn it off
 
     ```sh
-    $ docker stop tor_socks_proxy
+    $ docker stop tor-socks-proxy
     ```
 
 ## IP renewal
@@ -75,7 +75,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 - To manually renew the IP that Tor gives you, simply restart your docker container to open a new circuit:
 
    ```sh
-   $ docker restart tor_socks_proxy
+   $ docker restart tor-socks-proxy
    ```
 
    Just note that all the connections will be terminated and need to be reestablished.
