@@ -19,14 +19,15 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 1. Setup the proxy server at the **first time**
 
     ```sh
-    $ docker run -d --name tor-socks-proxy -p 127.0.0.1:9150:9150 peterdavehello/tor-socks-proxy:latest
+    $ docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150 peterdavehello/tor-socks-proxy:latest
     ```
 
+    - With parameter `--restart=always` the container will always start on daemon startup, which means it'll automatically start after system reboot.
     - Use `127.0.0.1` to limit the connections from localhost, do not change it unless you know you're going to expose it to a local network or to the Internet.
     - Change to first `9150` to any valid and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
     - Do not touch the second `9150` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
 
-    If you already setup the instance before *(not the first time)*, just start it:
+    If you already setup the instance before *(not the first time)* but it's in stopped state, you can just start it instead of creating a new one:
 
     ```sh
     $ docker start tor-socks-proxy
