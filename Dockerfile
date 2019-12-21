@@ -13,7 +13,7 @@ RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk
 COPY torrc /etc/tor/
 
 HEALTHCHECK --timeout=10s --start-period=60s \
-    CMD curl --fail --socks5-hostname localhost:9150 -I -L 'https://cdnjs.com/' || exit 1
+    CMD curl --fail --socks5-hostname localhost:9150 -I -L 'https://facebookcorewwwi.onion/' || exit 1
 
 EXPOSE 9150
 
