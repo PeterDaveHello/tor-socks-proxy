@@ -4,4 +4,3 @@ Log notice stdout
 SocksPort 0.0.0.0:$PORT
 DataDirectory /var/lib/tor
 MaxCircuitDirtiness 1
-
