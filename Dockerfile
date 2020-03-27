@@ -12,9 +12,13 @@ RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk
     tor --version
 COPY torrc /etc/tor/
 
-HEALTHCHECK --timeout=10s --start-period=60s \
-    CMD curl --fail --socks5-hostname localhost:9150 -I -L 'https://www.facebookcorewwwi.onion/' || exit 1
+ARG PORT
+ENV PORT $PORT
+RUN sed -i "s/\$PORT/$PORT/g" /etc/tor/torrc
 
-EXPOSE 9150
+HEALTHCHECK --timeout=10s --start-period=60s \
+    CMD curl --fail --socks5-hostname localhost:$PORT -I -L 'https://www.facebookcorewwwi.onion/' || exit 1
+
+EXPOSE $PORT
 
 CMD ["/usr/bin/tor", "-f", "/etc/tor/torrc"]
