@@ -4,3 +4,4 @@ Log notice stdout
 DNSPort 0.0.0.0:53
 SocksPort 0.0.0.0:9150
 DataDirectory /var/lib/tor
+DNSPort 0.0.0.0:9453  # Non-root user can't use port number below 1024
