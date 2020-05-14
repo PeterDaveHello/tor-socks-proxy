@@ -81,6 +81,11 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
    Just note that all the connections will be terminated and need to be reestablished.
 
+## DNS over Tor
+
+- Point your router's or device's DNS server to `127.0.0.1`.
+- Go to [dnsleaktest](https://www.dnsleaktest.com) to run a test.
+
 ## Note
 
 **For the Tor project sustainability, I strongly encourage you to help [setup Tor bridge/exit nodes](https://trac.torproject.org/projects/tor/wiki/TorRelayGuide)([**script**](https://github.com/PeterDaveHello/ubuntu-tor-simply-setup)) and [donate](https://donate.torproject.org/) money to the Tor project *(Not this proxy project)* when you have the ability/capacity!**
