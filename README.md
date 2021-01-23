@@ -27,7 +27,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     - Change to first `9150` to any valid and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
     - Do not touch the second `9150` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
 
-    If you want to expose Tor's DNS port, also add `-p 127.0.0.1:53:53/udp` in the command, see [DNS over Tor](#dns-over-tor) for more details.
+    If you want to expose Tor's DNS port, also add `-p 127.0.0.1:53:8853/udp` in the command, see [DNS over Tor](#dns-over-tor) for more details.
 
     If you already setup the instance before *(not the first time)* but it's in stopped state, you can just start it instead of creating a new one:
 
@@ -86,6 +86,10 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 ## DNS over Tor
 
 If you publish the DNS port in the first step of [Usage](#usage) section, you can query DNS request over Tor
+
+The DNSPort here is set to `8853` by default, but not the common `53`, because non-privileged port is preferred, and then [`libcap`](https://pkgs.alpinelinux.org/package/edge/main/x86/libcap)/[`CAP_NET_BIND_SERVICE` capability](https://man7.org/linux/man-pages/man7/capabilities.7.html) won't be needed, which is more *[Alpine Linux](https://alpinelinux.org/about/)(Small. Simple. Secure.)*
+
+You can still expose the port to `53` for outside the container by the parameter `-p 127.0.0.1:53:8853/udp. `nslookup` also supports to specify the port to `8853` by `-port=8853`, e.g. `nslookup -port=8853 ipinfo.tw 127.0.0.1`
 
 This port only handles A, AAAA, and PTR requests, see details on [official manual](https://www.torproject.org/docs/tor-manual.html.en)
 
