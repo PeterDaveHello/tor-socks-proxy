@@ -50,19 +50,27 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
 3. Configure your client to use it, target on `127.0.0.1` port `9150`(Or the other port you setup in step 1)
 
-    Take `curl` as an example, checkout what's your IP address via Tor network using one of the following IP checking services:
+    Take `curl` as an example, if you'd like to checkout what's your IP address via Tor network, using one of the following IP checking services:
+
+    - https://ipinfo.tw/ip ([My another side project](https://github.com/PeterDaveHello/tor-socks-proxy/))
+    - https://ipinfo.io/ip
+    - https://icanhazip.com
+    - https://ipecho.net/plain
 
     ```sh
     $ curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
-    $ curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.io/ip
-    $ curl --socks5-hostname 127.0.0.1:9150 https://icanhazip.com
-    $ curl --socks5-hostname 127.0.0.1:9150 https://ipecho.net/plain
     ```
 
     Take `ssh` and `nc` as an example, connect to a host via Tor:
 
     ```sh
     $ ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
+    ```
+
+    Tor Project also have an API if you want to be sure if you'on Tor network: https://check.torproject.org/api/ip, the result would look like:
+
+    ```json
+    {"IsTor":true,"IP":"151.80.58.219"}
     ```
 
 4. After using it, you can turn it off
