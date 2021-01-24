@@ -19,7 +19,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 1. Setup the proxy server at the **first time**
 
     ```sh
-    $ docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp peterdavehello/tor-socks-proxy:latest
+    docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp peterdavehello/tor-socks-proxy:latest
     ```
 
     - With parameter `--restart=always` the container will always start on daemon startup, which means it'll automatically start after system reboot.
@@ -32,7 +32,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     If you already setup the instance before *(not the first time)* but it's in stopped state, you can just start it instead of creating a new one:
 
     ```sh
-    $ docker start tor-socks-proxy
+    docker start tor-socks-proxy
     ```
 
 2. Make sure it's running, it'll take a short time to bootstrap
@@ -52,22 +52,22 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
     Take `curl` as an example, if you'd like to checkout what's your IP address via Tor network, using one of the following IP checking services:
 
-    - https://ipinfo.tw/ip ([My another side project](https://github.com/PeterDaveHello/tor-socks-proxy/))
-    - https://ipinfo.io/ip
-    - https://icanhazip.com
-    - https://ipecho.net/plain
+    - <https://ipinfo.tw/ip> ([My another side project](https://github.com/PeterDaveHello/tor-socks-proxy/))
+    - <https://ipinfo.io/ip>
+    - <https://icanhazip.com>
+    - <https://ipecho.net/plain>
 
     ```sh
-    $ curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
+    curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
     ```
 
     Take `ssh` and `nc` as an example, connect to a host via Tor:
 
     ```sh
-    $ ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
+    ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
     ```
 
-    Tor Project also have an API if you want to be sure if you'on Tor network: https://check.torproject.org/api/ip, the result would look like:
+    Tor Project also have an API if you want to be sure if you'on Tor network: <https://check.torproject.org/api/ip>, the result would look like:
 
     ```json
     {"IsTor":true,"IP":"151.80.58.219"}
@@ -76,7 +76,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 4. After using it, you can turn it off
 
     ```sh
-    $ docker stop tor-socks-proxy
+    docker stop tor-socks-proxy
     ```
 
 ## IP renewal
@@ -86,7 +86,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 - To manually renew the IP that Tor gives you, simply restart your docker container to open a new circuit:
 
    ```sh
-   $ docker restart tor-socks-proxy
+   docker restart tor-socks-proxy
    ```
 
    Just note that all the connections will be terminated and need to be reestablished.
