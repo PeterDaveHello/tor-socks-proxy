@@ -89,7 +89,7 @@ If you publish the DNS port in the first step of [Usage](#usage) section, you ca
 
 The DNSPort here is set to `8853` by default, but not the common `53`, because non-privileged port is preferred, and then [`libcap`](https://pkgs.alpinelinux.org/package/edge/main/x86/libcap)/[`CAP_NET_BIND_SERVICE` capability](https://man7.org/linux/man-pages/man7/capabilities.7.html) won't be needed, which is more *[Alpine Linux](https://alpinelinux.org/about/)(Small. Simple. Secure.)*
 
-You can still expose the port to `53` for outside the container by the parameter `-p 127.0.0.1:53:8853/udp. `nslookup` also supports to specify the port to `8853` by `-port=8853`, e.g. `nslookup -port=8853 ipinfo.tw 127.0.0.1`
+You can still expose the port to `53` for outside the container by the parameter `-p 127.0.0.1:53:8853/udp`. `nslookup` also supports to specify the port to `8853` by `-port=8853`, e.g. `nslookup -port=8853 ipinfo.tw 127.0.0.1`
 
 This port only handles A, AAAA, and PTR requests, see details on [official manual](https://www.torproject.org/docs/tor-manual.html.en)
 
