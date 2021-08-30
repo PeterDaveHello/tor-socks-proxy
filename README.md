@@ -52,7 +52,7 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 
     Take `curl` as an example, if you'd like to checkout what's your IP address via Tor network, using one of the following IP checking services:
 
-    - <https://ipinfo.tw/ip> ([My another side project](https://github.com/PeterDaveHello/tor-socks-proxy/))
+    - <https://ipinfo.tw/ip> ([My another side project](https://github.com/PeterDaveHello/ipinfo.tw/))
     - <https://ipinfo.io/ip>
     - <https://icanhazip.com>
     - <https://ipecho.net/plain>
