@@ -7,8 +7,6 @@
 ![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat)
 [![Build Status](https://travis-ci.com/PeterDaveHello/tor-socks-proxy.svg?branch=master)](https://travis-ci.com/PeterDaveHello/tor-socks-proxy)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/peterdavehello/tor-socks-proxy.svg)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
-[![Docker image layers](https://images.microbadger.com/badges/image/peterdavehello/tor-socks-proxy.svg)](https://microbadger.com/images/peterdavehello/tor-socks-proxy/)
-[![Docker image version](https://images.microbadger.com/badges/version/peterdavehello/tor-socks-proxy.svg)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/tags/)
 
 [![Docker Hub badge](http://dockeri.co/image/peterdavehello/tor-socks-proxy)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
 
