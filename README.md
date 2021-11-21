@@ -97,7 +97,7 @@ The DNSPort here is set to `8853` by default, but not the common `53`, because n
 
 You can still expose the port to `53` for outside the container by the parameter `-p 127.0.0.1:53:8853/udp`. `nslookup` also supports to specify the port to `8853` by `-port=8853`, e.g. `nslookup -port=8853 ipinfo.tw 127.0.0.1`
 
-This port only handles A, AAAA, and PTR requests, see details on [official manual](https://www.torproject.org/docs/tor-manual.html.en)
+This port only handles `A`, `AAAA`, and `PTR` requests, see details on [official manual](https://www.torproject.org/docs/tor-manual.html.en)
 
 Set the DNS server to `127.0.0.1` (Or another IP you set), use [macvk/dnsleaktest](https://github.com/macvk/dnsleaktest) or go to one of the following DNS leaking test websites to verify the result:
 
