@@ -5,8 +5,8 @@ LABEL name="tor-socks-proxy"
 LABEL version="latest"
 
 RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
-    apk --no-cache -U upgrade && \
-    apk --no-cache -v add tor@edge curl && \
+    apk -U upgrade && \
+    apk -v add tor@edge curl && \
     chmod 700 /var/lib/tor && \
     rm -rf /var/cache/apk/* && \
     tor --version
