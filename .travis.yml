@@ -9,7 +9,7 @@ matrix:
         - task=shellcheck
       language: node_js
       node_js:
-        - "12"
+        - "18"
       cache:
         directories:
           - .npx
