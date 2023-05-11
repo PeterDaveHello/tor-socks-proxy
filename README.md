@@ -10,7 +10,7 @@
 
 [![Docker Hub badge](http://dockeri.co/image/peterdavehello/tor-socks-proxy)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
 
-The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https://en.wikipedia.org/wiki/SOCKS#SOCKS5) [proxy server](https://en.wikipedia.org/wiki/Proxy_server) inside a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) [container](https://en.wikipedia.org/wiki/Container_(virtualization)) without relay/exit feature.
+The super easy way to set up a [Tor](https://www.torproject.org) [SOCKS5](https://en.wikipedia.org/wiki/SOCKS#SOCKS5) [proxy server](https://en.wikipedia.org/wiki/Proxy_server) inside a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) [container](https://en.wikipedia.org/wiki/Container_(virtualization)), without Tor relay/exit node function enabled.
 
 ## Docker image Repository
 
@@ -27,97 +27,60 @@ Use the prefix `ghcr.io/` if you prefer to use GitHub Container Registry.
 
 ## Usage
 
-1. Setup the proxy server at the **first time**
+### First-Time Setup
 
-    ```sh
-    docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp peterdavehello/tor-socks-proxy:latest
-    ```
+```sh
+docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp peterdavehello/tor-socks-proxy:latest
+```
 
-    - With parameter `--restart=always` the container will always start on daemon startup, which means it'll automatically start after system reboot.
-    - Use `127.0.0.1` to limit the connections from localhost, do not change it unless you know you're going to expose it to a local network or to the Internet.
-    - Change to first `9150` to any valid and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
-    - Do not touch the second `9150` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
+- `--restart=always`: This ensures the container automatically restarts whenever the system reboots.
+- `-p 127.0.0.1:9150:9150/tcp`: This binds the container to localhost, and you should not change this IP unless you want to expose the proxy to a local network or the Internet.
+  - You can change the first `9150` to any available port. Please note that ports `9050`/`9150` may be occupied if you are running another Tor client like TorBrowser.
 
-    If you want to expose Tor's DNS port, also add `-p 127.0.0.1:53:8853/udp` in the command, see [DNS over Tor](#dns-over-tor) for more details.
+### Start or stop an existing Instance manually
 
-    If you already setup the instance before *(not the first time)* but it's in stopped state, you can just start it instead of creating a new one:
+```sh
+docker start tor-socks-proxy
+```
 
-    ```sh
-    docker start tor-socks-proxy
-    ```
+```sh
+docker stop tor-socks-proxy
+```
 
-2. Make sure it's running, it'll take a short time to bootstrap
+### Checking the Proxy Status and logs
 
-    ```sh
-    $ docker logs tor-socks-proxy
-    .
-    .
-    .
-    Jan 10 01:06:59.000 [notice] Bootstrapped 85%: Finishing handshake with first hop
-    Jan 10 01:07:00.000 [notice] Bootstrapped 90%: Establishing a Tor circuit
-    Jan 10 01:07:02.000 [notice] Tor has successfully opened a circuit. Looks like client functionality is working.
-    Jan 10 01:07:02.000 [notice] Bootstrapped 100%: Done
-    ```
+```sh
+docker logs tor-socks-proxy
+```
 
-3. Configure your client to use it, target on `127.0.0.1` port `9150`(Or the other port you setup in step 1)
+### Configuring a Client to Use the Proxy
 
-    Take `curl` as an example, if you'd like to checkout what's your IP address via Tor network, using one of the following IP checking services:
+```sh
+curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
+```
 
-    - <https://ipinfo.tw/ip> ([My another side project](https://github.com/PeterDaveHello/ipinfo.tw/))
-    - <https://ipinfo.io/ip>
-    - <https://icanhazip.com>
-    - <https://ipecho.net/plain>
+### Stopping the Proxy
 
-    ```sh
-    curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
-    ```
+```sh
+docker stop tor-socks-proxy
+```
 
-    Take `ssh` and `nc` as an example, connect to a host via Tor:
+## IP Renewal
 
-    ```sh
-    ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
-    ```
+By default, Tor automatically changes IPs every 10 minutes. You can manually renew the IP by restarting the container:
 
-    Tor Project also have an API if you want to be sure if you'on Tor network: <https://check.torproject.org/api/ip>, the result would look like:
-
-    ```json
-    {"IsTor":true,"IP":"151.80.58.219"}
-    ```
-
-4. After using it, you can turn it off
-
-    ```sh
-    docker stop tor-socks-proxy
-    ```
-
-## IP renewal
-
-- Tor changes circuit automatically every 10 minutes by default, which usually bring you the new IP address, it's affected by `MaxCircuitDirtiness` config, you can override it with your own `torrc`, or edit the config file and restart the container. See the official [manual](https://www.torproject.org/docs/tor-manual.html.en) for more details.
-
-- To manually renew the IP that Tor gives you, simply restart your docker container to open a new circuit:
-
-   ```sh
-   docker restart tor-socks-proxy
-   ```
-
-   Just note that all the connections will be terminated and need to be reestablished.
+```sh
+docker restart tor-socks-proxy
+```
 
 ## DNS over Tor
 
-If you publish the DNS port in the first step of [Usage](#usage) section, you can query DNS request over Tor
+Publish DNS port during setup to query DNS requests over Tor:
 
-The DNSPort here is set to `8853` by default, but not the common `53`, because non-privileged port is preferred, and then [`libcap`](https://pkgs.alpinelinux.org/package/edge/main/x86/libcap)/[`CAP_NET_BIND_SERVICE` capability](https://man7.org/linux/man-pages/man7/capabilities.7.html) won't be needed, which is more *[Alpine Linux](https://alpinelinux.org/about/)(Small. Simple. Secure.)*
+```sh
+docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp -p 127.0.0.1:53:8853/udp peterdavehello/tor-socks-proxy:latest
+```
 
-You can still expose the port to `53` for outside the container by the parameter `-p 127.0.0.1:53:8853/udp`. `nslookup` also supports to specify the port to `8853` by `-port=8853`, e.g. `nslookup -port=8853 ipinfo.tw 127.0.0.1`
+## Support Tor Project
 
-This port only handles `A`, `AAAA`, and `PTR` requests, see details on [official manual](https://www.torproject.org/docs/tor-manual.html.en)
-
-Set the DNS server to `127.0.0.1` (Or another IP you set), use [macvk/dnsleaktest](https://github.com/macvk/dnsleaktest) or go to one of the following DNS leaking test websites to verify the result:
-
-- DNS leak test: <https://www.dnsleaktest.com>
-- IP Leak Tests: <https://ipleak.org/>
-- IP/DNS Detect: <https://ipleak.net/>
-
-## Note
-
-**For the Tor project sustainability, I strongly encourage you to help [setup Tor bridge/exit nodes](https://trac.torproject.org/projects/tor/wiki/TorRelayGuide)([**script**](https://github.com/PeterDaveHello/ubuntu-tor-simply-setup)) and [donate](https://donate.torproject.org/) money to the Tor project *(Not this proxy project)* when you have the ability/capacity!**
+Support the Tor project by [setting up Tor bridge/exit nodes](https://trac.torproject.org/projects/tor/wiki/TorRelayGuide) and [donating](https://donate.torproject.org/).
