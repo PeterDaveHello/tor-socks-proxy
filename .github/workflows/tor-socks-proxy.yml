@@ -1,0 +1,45 @@
+name: PeterDaveHello/tor-socks-proxy
+on:
+  push:
+    branches:
+    - "**/*"
+  pull_request:
+concurrency:
+#   # This item has no matching transformer
+#   maximum_number_of_builds: 0
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    env:
+      task: shellcheck
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3.5.0
+      with:
+        fetch-depth: 5
+    - name: Set up cache
+      uses: actions/cache@v3.3.1
+      with:
+        path: ".npx"
+        key: "${{ runner.os }}-path"
+    - uses: actions/setup-node@v3.6.0
+      with:
+        cache: npm
+        node-version: '18'
+    - run: npm install
+    - run: npx --cache .npx dockerfile_lint
+  test_2:
+    runs-on: ubuntu-20.04
+    env:
+      task: Docker build
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3.5.0
+      with:
+        fetch-depth: 5
+    - run: docker build -t tor-socks-proxy:${{ github.sha }} .
+    services:
+#       # This item has no matching transformer
+#       docker:
