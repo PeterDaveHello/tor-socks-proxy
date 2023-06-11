@@ -12,6 +12,19 @@
 
 The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https://en.wikipedia.org/wiki/SOCKS#SOCKS5) [proxy server](https://en.wikipedia.org/wiki/Proxy_server) inside a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) [container](https://en.wikipedia.org/wiki/Container_(virtualization)) without relay/exit feature.
 
+## Docker image Repository
+
+We push the built image to Docker Hub and GitHub Container Registry:
+
+- GitHub Container Registry:
+  - `ghcr.io/peterdavehello/tor-socks-proxy`
+  - <https://github.com/PeterDaveHello/tor-socks-proxy/pkgs/container/tor-socks-proxy>
+- Docker Hub:
+  - `peterdavehello/tor-socks-proxy`
+  - <https://hub.docker.com/r/peterdavehello/tor-socks-proxy/>
+
+Use the prefix `ghcr.io/` if you prefer to use GitHub Container Registry.
+
 ## Usage
 
 1. Setup the proxy server at the **first time**
