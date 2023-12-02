@@ -1,0 +1,7 @@
+UseBridges 1
+ClientTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy
+#Obtain bridge lines from Tor Bridge Relay Database (https://bridges.torproject.org/bridges?transport=obfs4)
+# See example below
+#Bridge obfs4 xx.xxx.xxx.xxx:0000 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx cert=xxxxxxxxxxxxxxxxxxx iat-mode=0
+#Bridge obfs4 xx.xxx.xxx.xxx:0000 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx cert=xxxxxxxxxxxxxxxxxxx iat-mode=0
+

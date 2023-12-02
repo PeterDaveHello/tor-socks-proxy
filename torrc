@@ -3,3 +3,5 @@ Log notice stdout
 DNSPort 0.0.0.0:8853
 SocksPort 0.0.0.0:9150
 DataDirectory /var/lib/tor
+
+%include /etc/tor/torrc.d/*.conf
