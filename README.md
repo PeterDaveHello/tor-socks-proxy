@@ -90,6 +90,37 @@ Use the prefix `ghcr.io/` if you prefer to use GitHub Container Registry.
     docker stop tor-socks-proxy
     ```
 
+## Configuration with Custom Bridges
+
+### Description
+
+To enhance privacy and bypass censorship, users can configure the `tor-socks-proxy` Docker container to use custom Tor bridges. The steps involve copying a template configuration file, obtaining bridge lines from the Tor Bridge Relay Database, and saving them to a configuration file. 
+
+**Procedure:**
+
+1. **Copy Configuration Template:**
+   - Copy `bridges.conf.template` to `bridges.conf`.
+
+2. **Obtain Bridge Lines:**
+   - Visit the Tor Bridge Relay Database at [https://bridges.torproject.org/bridges?transport=obfs4](https://bridges.torproject.org/bridges?transport=obfs4).
+   - Select bridge lines that use the `obfs4` transport.
+
+3. **Update Configuration File:**
+   - Save the obtained bridge lines to `bridges.conf`. 
+   - Format each line as shown below:
+
+     ```conf
+     Bridge obfs4 [IP Address]:[Port] [Fingerprint] cert=[Certificate] iat-mode=0
+     ```
+
+### Basic Example of Running with Custom Bridges
+
+Run the Docker container with the updated bridges configuration:
+
+```sh
+docker run -d --restart=always --name tor-socks-proxy -p 0.0.0.0:9100:9150 -v $(pwd)/bridges.conf:/etc/tor/torrc.d/bridges.conf peterdavehello/tor-socks-proxy
+```
+
 ## IP renewal
 
 - Tor changes circuit automatically every 10 minutes by default, which usually bring you the new IP address, it's affected by `MaxCircuitDirtiness` config, you can override it with your own `torrc`, or edit the config file and restart the container. See the official [manual](https://www.torproject.org/docs/tor-manual.html.en) for more details.

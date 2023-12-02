@@ -1,17 +1,16 @@
-# Dockerfile for Tor Relay Server with obfs4proxy (Multi-Stage build)
 FROM golang:alpine AS go-build
 
-
 # Install Go for building obfs4proxy.
-RUN apk --no-cache add --update go git  ca-certificates
-RUN mkdir -p /go/src /go/bin
-RUN chmod -R 644 /go
+RUN apk --no-cache --update add go git ca-certificates \
+    && mkdir -p /go/src /go/bin \
+    && chmod -R 644 /go 
+
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 WORKDIR /go
-# Build /go/bin/obfs4proxy & /go/bin/meek-server
-RUN go install -v gitlab.com/yawning/obfs4.git/obfs4proxy@latest \
-    && go install -v git.torproject.org/pluggable-transports/meek.git/meek-server@latest 
+
+# Build /go/bin/obfs4proxy
+RUN go install -v gitlab.com/yawning/obfs4.git/obfs4proxy@latest
 
 # Copy the binaries to /usr/local/bin
 RUN cp /go/bin/* /usr/local/bin/
@@ -24,10 +23,9 @@ LABEL version="latest"
 
 RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
     echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/testing'   >> /etc/apk/repositories && \
-    apk -U upgrade && \
-    apk -v add tor@edge curl && \
+    apk -v --no-cache --update add tor@edge curl && \
     chmod 700 /var/lib/tor && \
-    rm -rf /var/cache/apk/* && \
+    mkdir -p /etc/tor/torrc.d && \
     tor --version
 COPY --chown=tor:root torrc /etc/tor/
 
