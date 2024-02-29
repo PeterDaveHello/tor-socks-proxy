@@ -80,6 +80,13 @@ Publish DNS port during setup to query DNS requests over Tor:
 ```sh
 docker run -d --restart=always --name tor-socks-proxy -p 127.0.0.1:9150:9150/tcp -p 127.0.0.1:53:8853/udp peterdavehello/tor-socks-proxy:latest
 ```
+## Sponsor
+
+<a href="https://m.do.co/c/1fdd0a1d695a"><img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="201px"></a>
+
+This project is now sponsored by DigitalOcean, providing us with a dedicated development and testing environment.
+
+For cloud VPS hosting with $200 in free credit, consider using my DigitalOcean referral link: https://m.do.co/c/1fdd0a1d695a
 
 ## Support Tor Project
 
