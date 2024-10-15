@@ -65,6 +65,20 @@ curl --socks5-hostname 127.0.0.1:9150 https://ipinfo.tw/ip
 docker stop tor-socks-proxy
 ```
 
+### Using bridges
+
+Edit `/etc/tor/torrc` and the following:
+
+```
+Bridge obfs4 ...
+Bridge obfs4 ...
+Bridge obfs4 ...
+Bridge obfs4 ...
+
+ClientTransportPlugin obfs4 exec /usr/bin/lyrebird
+UseBridges 1
+```
+
 ## IP Renewal
 
 By default, Tor automatically changes IPs every 10 minutes. You can manually renew the IP by restarting the container:
