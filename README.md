@@ -5,7 +5,7 @@
 # Tor-socks-proxy
 
 ![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat)
-[![Build Status](https://app.travis-ci.com/PeterDaveHello/tor-socks-proxy.svg?branch=master)](https://app.travis-ci.com/PeterDaveHello/tor-socks-proxy)
+[![Build Status](https://github.com/PeterDaveHello/tor-socks-proxy/actions/workflows/ci.yml/badge.svg)](https://github.com/PeterDaveHello/tor-socks-proxy/actions/workflows/ci.yml)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/peterdavehello/tor-socks-proxy.svg)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
 
 [![Docker Hub badge](http://dockeri.co/image/peterdavehello/tor-socks-proxy)](https://hub.docker.com/r/peterdavehello/tor-socks-proxy/)
