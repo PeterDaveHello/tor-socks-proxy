@@ -67,7 +67,7 @@ docker stop tor-socks-proxy
 
 ### Using bridges
 
-Edit `/etc/tor/torrc` and the following:
+Edit `/etc/tor/torrc` and add the following:
 
 ```
 Bridge obfs4 ...
