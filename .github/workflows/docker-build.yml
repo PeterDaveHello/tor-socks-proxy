@@ -12,7 +12,6 @@ on:
 
 env:
   DOCKERHUB_IMAGE: peterdavehello/tor-socks-proxy
-  GHCR_IMAGE: ghcr.io/${{ github.repository }}
   PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7,linux/386
 
 jobs:
@@ -34,6 +33,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Compute lowercase GHCR image name
+        run: echo "GHCR_IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -65,7 +67,6 @@ jobs:
             ${{ env.GHCR_IMAGE }}
           tags: |
             type=ref,event=branch
-            type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=sha,format=short
