@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Run dockerfile_lint
         run: npx --yes dockerfile_lint@0.3.4 -f Dockerfile
 
